@@ -1,14 +1,14 @@
 #!/usr/bin/env ruby
 
 def hex_to_bin(hex)
- bin =  hex.scan(/../).map { |b| b.hex.chr }.join
+ bin =  hex.scan(/.{2}/).map { |b| b.hex.chr }.join
  return bin
 end
 
 def bin_to_b64(bin)
   base64_chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
   b64 = ""
-  strings = bin.scan(/.{2}./)
+  strings = bin.scan(/.{3}/)
   strings.each do |str|
     bin_str = str.bytes.map { |c| "%08b" % c  }.join
     chars = bin_str.scan(/.{6}/).map { |b| b.to_i(2) }
